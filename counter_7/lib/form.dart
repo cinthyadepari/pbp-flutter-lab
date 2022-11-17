@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:counter_7/main.dart';
 import 'package:flutter/material.dart';
-import 'package:counter_7/budget.dart';
+import 'package:counter_7/budget.dart' as globals;
 import 'package:flutter/services.dart';
 
 class MyApp extends StatelessWidget{
@@ -108,7 +108,8 @@ class MyFormPageState extends State<BudgetForm> {
                       ],
                       decoration: InputDecoration(
                         hintText: 'Nominal',
-                        border: OutlinedBorder(BorderRadius.circular(5.0))),
+                        border: OutlineInputBorder(
+                          borderRadius :BorderRadius.circular(5.0))),
                       onChanged: (String? value){
                         setState(() {
                           _nominal = int.parse(value!);
@@ -153,7 +154,8 @@ class MyFormPageState extends State<BudgetForm> {
                   onPressed: (){
                     if(_formKey.currentState!.validate()){
                       _formKey.currentState!.save();
-                      budgetList.data.add(Budget(_judul, _nominal, _milih));
+                      globals.itemList.add(
+                              globals.Budget(itemBaru, _nominal, _milih));
                     showDialog(
                       context : context, 
                       builder: (context){
@@ -175,20 +177,13 @@ class MyFormPageState extends State<BudgetForm> {
                                     Navigator.pop(context);
                                   },
                                   child: const Text("Back"),
-                               ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      }
-                    }),
-              ],
-            ),
+                                )
+                                        ])));
+                              });
+                        }
+                      })],
           ),
         ),
-      ),
-    );
+    ));
   }
 }

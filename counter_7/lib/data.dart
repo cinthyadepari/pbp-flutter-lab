@@ -2,21 +2,6 @@ import 'package:counter_7/form.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/main.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyFormPage(),
-    );
-  }
-}
-
 class MyDataPage extends StatefulWidget{
   MyDataPage({super.key, this.budgetItem});
   var budgetItem;
@@ -40,7 +25,8 @@ class MyDataPageState extends State<MyDataPage>{
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MyHomePage()));
+                        builder: (context) => const MyHomePage()),
+                );
               }),
           ListTile(
             title: const Text("Add Budget"),
@@ -48,7 +34,7 @@ class MyDataPageState extends State<MyDataPage>{
               Navigator.pushReplacement(
                 context, 
                 MaterialPageRoute(
-                  builder: (context)=> const tambahbudgetForm()),
+                  builder: (context)=> const BudgetForm()),
               );
             },
           ),
@@ -84,7 +70,7 @@ class MyDataPageState extends State<MyDataPage>{
                       return Card(
                         child: ListTile(
                           title: Text(widget.budgetItem[index]._judul),
-                          subtitle: Text(widget.budgetItem[index]._nominal),
+                          subtitle: Text(widget.budgetItem[index].nominal),
                           trailing: Column(
                             children: [
                               Text(widget.budgetItem[index].jenis),
