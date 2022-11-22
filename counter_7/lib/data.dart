@@ -1,44 +1,46 @@
-import 'package:counter_7/form.dart';
 import 'package:flutter/material.dart';
+import 'package:counter_7/form.dart';
 import 'package:counter_7/main.dart';
+import 'package:counter_7/budget.dart';
 
-class MyDataPage extends StatefulWidget{
+class MyDataPage extends StatefulWidget {
   MyDataPage({super.key, this.budgetItem});
   var budgetItem;
 
   @override
-  State<MyDataPage> createState() => MyDataPageState();
+  State<MyDataPage> createState() => _budgetState();
 }
 
-class MyDataPageState extends State<MyDataPage>{
+class _budgetState extends State<MyDataPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Budget Data'),
-        ),
-        drawer: Drawer(
-            child: Column(children: [
-          ListTile(
+      appBar: AppBar(
+        title: const Text('Data Budget'),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            ListTile(
               title: const Text('counter_7'),
               onTap: () {
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MyHomePage()),
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage(title: "Program Counter")),
                 );
-              }),
-          ListTile(
-            title: const Text("Add Budget"),
-            onTap: (){
-              Navigator.pushReplacement(
-                context, 
-                MaterialPageRoute(
-                  builder: (context)=> const BudgetForm()),
-              );
-            },
-          ),
-        ListTile(
+              },
+            ),
+            ListTile(
+              title: const Text('Tambah Budget'),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BudgetForm()),
+                );
+              },
+            ),
+            ListTile(
               title: const Text('Data Budget'),
               onTap: () {
                 Navigator.pushReplacement(
@@ -58,7 +60,7 @@ class MyDataPageState extends State<MyDataPage>{
                   child: Column(
                     children: [
                       const Text(
-                        "Data kosong!",
+                        "Data Kosong!",
                       ),
                     ],
                   ),
@@ -70,10 +72,10 @@ class MyDataPageState extends State<MyDataPage>{
                       return Card(
                         child: ListTile(
                           title: Text(widget.budgetItem[index]._judul),
-                          subtitle: Text(widget.budgetItem[index].nominal),
+                          subtitle: Text(widget.budgetItem[index]._nominal),
                           trailing: Column(
                             children: [
-                              Text(widget.budgetItem[index].jenis),
+                              Text(widget.budgetItem[index]._milih)
                             ],
                           ),
                         ),

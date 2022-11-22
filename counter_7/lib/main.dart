@@ -1,5 +1,8 @@
+import 'package:counter_7/data.dart';
 import 'package:counter_7/form.dart';
 import 'package:flutter/material.dart';
+import 'package:counter_7/main.dart';
+import 'package:counter_7/budget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,11 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
   //String ganjil = 'ganjil';
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -71,7 +69,44 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       //untuk drawer
-      drawer: const Drawer(),
+       drawer: Drawer(
+          child: Column(
+            children: [
+              // Menambahkan clickable menu
+              ListTile(
+                title: const Text('Counter'),
+                onTap: () {
+                  // Route menu ke halaman utama
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Program Counter')),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Tambah Budget'),
+                onTap: () {
+                  // Route menu ke halaman form
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BudgetForm()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Data Budget'),
+                onTap: () {
+                  // Route menu ke halaman form
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyDataPage()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
