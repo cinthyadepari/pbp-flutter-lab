@@ -1,5 +1,6 @@
 import 'package:counter_7/data.dart';
 import 'package:counter_7/form.dart';
+import 'package:counter_7/mywatchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/main.dart';
 import 'package:counter_7/budget.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
        
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
       home: const MyHomePage(title: 'Program Counter'),
     );
@@ -101,6 +102,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => MyDataPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('My Watch List'),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Route menu ke halaman form
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const mywatchlist()),
                   );
                 },
               ),
